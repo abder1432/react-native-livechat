@@ -7,17 +7,9 @@ import MovableView from 'react-native-movable-view';
 export default class ChatBubble extends Component {
   render() {
     return (
-      <MovableView
-        disabled={!this.props.disabled}
-        ref={(ref) => { this.move = ref; }}
-        style={styles.move}
-      >
-        <View animation="fadeIn" style={{ left: this.props.left, top: this.props.top }}>
-          <TouchableOpacity onPress={this.props.openChat} activeOpacity={0.75}>
-            {this.props.bubble}
-          </TouchableOpacity>
-        </View>
-      </MovableView>
+        <TouchableOpacity onPress={this.props.openChat}>
+          {this.props.bubble}
+        </TouchableOpacity>
     );
   }
 }
