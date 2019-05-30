@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
-import { View } from 'react-native-animatable';
-import MovableView from 'react-native-movable-view';
 
 export default class ChatBubble extends Component {
   render() {
