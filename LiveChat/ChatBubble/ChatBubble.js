@@ -24,7 +24,6 @@ export default class ChatBubble extends Component {
 
 const styles = StyleSheet.create({
   move: {
-    position: 'absolute',
   },
 });
 
