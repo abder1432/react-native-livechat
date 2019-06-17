@@ -2,5 +2,5 @@
 
 Modified for personal usage.
 
-Visit official package [LiveChat widget](https://www.livechatinc.com/)
+Visit official package [here](https://github.com/livechat/react-native-livechat/)
 
