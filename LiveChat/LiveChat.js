@@ -33,8 +33,6 @@ export default class LiveChat extends Component {
   defineStyles() {
     this.styles = StyleSheet.create({
       bubbleStyle: {
-        width: width / 5,
-        height: width / 5,
         backgroundColor: this.props.bubbleColor,
         borderRadius: width / 10,
         alignItems: 'center',
@@ -44,7 +42,7 @@ export default class LiveChat extends Component {
         width: width / 7, height: width / 7,
       },
       container: {
-        position: 'absolute',
+        flex: 1,
       },
     });
   }
@@ -59,10 +57,8 @@ export default class LiveChat extends Component {
 
   render() {
     return (
-      <View style={this.styles.container}>
+      <View style={this.props.chatContainerStyle}>
         <ChatBubble
-          left={this.props.bubbleLeft}
-          top={this.props.bubbleTop}
           openChat={this.openChat}
           bubble={this.state.bubble}
           disabled={this.props.movable}
@@ -89,11 +85,11 @@ LiveChat.propTypes = {
 
 LiveChat.defaultProps = {
   bubbleColor: '#2196F3',
-  movable: true,
+  movable: false,
   onLoaded: () => {},
-  bubbleLeft: width - (width / 5) - (width / 50),
-  bubbleTop: Platform.OS === 'ios' ? height - (width / 5) - (width / 50) : height - (width / 5) - (width / 13),
+  bubbleLeft: 0,
+  bubbleTop: 0,
   chatTitle: 'Chat with us!',
-  greeting: 'Welcome to our LiveChat!\nHow may We help you?',
+  greeting: 'أهلا بك! كيف يمكن أن نساعدك؟',
   noAgents: 'Our agents are not available right now.',
 };

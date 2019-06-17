@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 export default class ChatBubble extends Component {
   render() {
     return (
-        <TouchableOpacity onPress={this.props.openChat}>
+        <TouchableOpacity style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} onPress={this.props.openChat}>
           {this.props.bubble}
         </TouchableOpacity>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Text, Dimensions, Platform, Modal, SafeAreaView } from 'react-native';
 import { init } from '@livechat/livechat-visitor-sdk';
 import { View } from 'react-native-animatable';
 import PropTypes from 'prop-types';
@@ -113,9 +113,7 @@ export default class Chat extends React.Component {
   };
 
   closeChat = () => {
-    this.chat.lightSpeedOut(500).then(() => {
-      this.props.closeChat();
-    });
+    this.props.closeChat();
   };
 
   renderFooter = () => {
@@ -134,15 +132,22 @@ export default class Chat extends React.Component {
   render() {
     if (this.props.isChatOn) {
       return (
-        <View
-          animation="lightSpeedIn"
+        <Modal
+          animationType="slide"
+        >
+        <SafeAreaView
           style={styles.container}
           ref={(ref) => { this.chat = ref; }}
         >
           <NavigationBar chatTitle={this.props.chatTitle} closeChat={this.closeChat} />
+         
+         <View style={{ flex: 1 }}>
+
+    
           <Text style={styles.status}>
-            { this.state.onlineStatus ? this.props.greeting : this.props.noAgents }
+            { this.state.onlineStatus ? <Text style={styles.greeting}>{this.props.greeting}</Text> : <Text style={styles.noAgents}>{this.props.noAgents}</Text> }
           </Text>
+        
           <GiftedChat
             messages={this.state.messages}
             renderFooter={this.renderFooter}
@@ -151,7 +156,10 @@ export default class Chat extends React.Component {
             user={this.getVisitor()}
             {...this.props}
           />
-        </View>
+
+          </View>
+        </SafeAreaView>
+        </Modal>
       );
     }
     return null;
@@ -200,8 +208,15 @@ const styles = StyleSheet.create({
   status: {
     textAlign: 'center',
     fontSize: totalSize(2.1),
+    fontFamily: 'Cairo-regular',
     fontWeight: '500',
     color: '#444',
     padding: 5,
   },
+  greeting: {
+    color: 'green'
+  },
+  noAgents: {
+    color: 'red'
+  }
 });
